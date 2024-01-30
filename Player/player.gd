@@ -61,6 +61,9 @@ func _physics_process(delta):
 		var image = get_viewport().get_texture().get_image()
 		image.save_png("captures/screenshot_"+timeStamp+".png")
 	
+	if Input.is_action_just_pressed("quit"):
+		get_tree().quit()
+	
 #---------------------------------------------------------------
 # recuparation de la souris
 func _input(event):
