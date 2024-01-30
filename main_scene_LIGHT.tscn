@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c4hewvicu5pou"]
+[gd_scene load_steps=24 format=3 uid="uid://c4hewvicu5pou"]
 
 [ext_resource type="PackedScene" uid="uid://btfmllbek7mwv" path="res://Player/Player.tscn" id="1_hmnd8"]
 [ext_resource type="PackedScene" uid="uid://csphts0qqn4en" path="res://PlanSimple.tscn" id="2_boltm"]
@@ -8,6 +8,7 @@
 [ext_resource type="FontFile" uid="uid://7mcak38aog2e" path="res://font/FiraCode-Medium.ttf" id="6_31g42"]
 [ext_resource type="Script" path="res://script/fps.gd" id="7_bfcsj"]
 [ext_resource type="PackedScene" uid="uid://bh28ck1nawoci" path="res://OBJECTS/Parois1.tscn" id="8_228le"]
+[ext_resource type="PackedScene" uid="uid://dtb640b4n081h" path="res://OBJECTS/TabouretRadio.tscn" id="9_noaky"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yj1ks"]
 sky_curve = 0.126134
@@ -183,3 +184,6 @@ spot_angle_attenuation = 0.0980732
 
 [node name="Parois" parent="." instance=ExtResource("8_228le")]
 transform = Transform3D(0.724749, 0, -0.689013, 0, 1, 0, 0.689013, 0, 0.724749, 10.6368, -0.243042, -5.19653)
+
+[node name="Node3D" parent="." instance=ExtResource("9_noaky")]
+transform = Transform3D(-0.0900938, 0, -0.995933, 0, 1, 0, 0.995933, 0, -0.0900938, -13.4476, 0, -4.20339)

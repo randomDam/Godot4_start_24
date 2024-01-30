@@ -19,7 +19,7 @@ size = Vector2(1000, 1000)
 [sub_resource type="BoxShape3D" id="BoxShape3D_85ow7"]
 size = Vector3(1000, 1, 1000)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_pikda"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w3vvy"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("2_ftpk4")
@@ -36,7 +36,7 @@ shader_parameter/specular = 0.5
 shader_parameter/scale_h = 1.0
 shader_parameter/scale_w = 1.0
 shader_parameter/scale_var = -0.25
-shader_parameter/grass_strength = 0.55
+shader_parameter/grass_strength = 0.243
 shader_parameter/optimization_by_distance = false
 shader_parameter/optimization_level = 7.0
 shader_parameter/optimization_dist_min = 10.0
@@ -54,7 +54,7 @@ _surfaces = [{
 "format": 34359742495,
 "index_count": 12,
 "index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 3, 0, 1, 0, 0, 0, 4, 0, 5, 0, 6, 0, 7, 0, 5, 0, 4, 0),
-"material": SubResource("ShaderMaterial_pikda"),
+"material": SubResource("ShaderMaterial_w3vvy"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 8,
@@ -83,6 +83,7 @@ shape = SubResource("BoxShape3D_85ow7")
 multimesh = SubResource("MultiMesh_uxpee")
 script = ExtResource("4_22kd2")
 texture_albedo = ExtResource("5_uf4lo")
+grass_strength = 0.243
 sgt_radius = 2.0
 sgt_density = 200
 sgt_scale = 1.0

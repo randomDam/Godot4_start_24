@@ -6,7 +6,6 @@
 [ext_resource type="Shader" path="res://shader/noise.gdshader" id="5_h3t2h"]
 [ext_resource type="FontFile" uid="uid://7mcak38aog2e" path="res://font/FiraCode-Medium.ttf" id="6_m6pat"]
 [ext_resource type="Script" path="res://script/fps.gd" id="7_2h6sg"]
-[ext_resource type="VoxelGIData" uid="uid://chl2068fg1ll" path="res://gi/main_scene.VoxelGI_data.res" id="8_0v4dg"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/scatter.gd" id="9_l61r5"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="10_hwhxs"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="11_tt5rq"]
@@ -33,6 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://6jmdwj3vn6m0" path="res://addons/zylann.hterrain/tools/icons/icon_detail_layer_node.svg" id="31_cxnb6"]
 [ext_resource type="ArrayMesh" uid="uid://bhjb8bijf1ql3" path="res://addons/zylann.hterrain/models/grass_quad_x3.obj" id="31_fy4s1"]
 [ext_resource type="PackedScene" uid="uid://bh28ck1nawoci" path="res://OBJECTS/Parois1.tscn" id="33_xecl7"]
+[ext_resource type="PackedScene" uid="uid://dtb640b4n081h" path="res://OBJECTS/TabouretRadio.tscn" id="34_o0kc3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yj1ks"]
 sky_curve = 0.126134
@@ -113,16 +113,16 @@ shader_parameter/coloramount = 0.6
 shader_parameter/grainsize = 2.195
 shader_parameter/lumamount = 0.3
 
-[sub_resource type="Resource" id="Resource_egcp5"]
+[sub_resource type="Resource" id="Resource_ewreu"]
 script = ExtResource("11_tt5rq")
-amount = 700
+amount = 300
 enabled = true
 override_global_seed = false
 custom_seed = 0
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_ei115"]
+[sub_resource type="Resource" id="Resource_6p5tn"]
 script = ExtResource("12_qhqhp")
 position = Vector3(0.15, 0.15, 0.15)
 rotation = Vector3(20, 360, 20)
@@ -133,7 +133,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_74tpp"]
+[sub_resource type="Resource" id="Resource_3rpt5"]
 script = ExtResource("13_qj2ib")
 iterations = 3
 offset_step = 0.2
@@ -145,7 +145,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_bc80y"]
+[sub_resource type="Resource" id="Resource_ceacj"]
 script = ExtResource("14_yvh0i")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 5.0
@@ -161,9 +161,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_s0fjq"]
+[sub_resource type="Resource" id="Resource_p3o5b"]
 script = ExtResource("10_hwhxs")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_egcp5"), SubResource("Resource_ei115"), SubResource("Resource_74tpp"), SubResource("Resource_bc80y")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_ewreu"), SubResource("Resource_6p5tn"), SubResource("Resource_3rpt5"), SubResource("Resource_ceacj")])
 
 [sub_resource type="Resource" id="Resource_g8bsm"]
 script = ExtResource("17_tcmkp")
@@ -268,16 +268,10 @@ spot_range = 26.5056
 spot_attenuation = 0.133972
 spot_angle_attenuation = 0.0980732
 
-[node name="VoxelGI" type="VoxelGI" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.44385, 1.55715, 1.84119)
-size = Vector3(38.8076, 20, 29.8303)
-data = ExtResource("8_0v4dg")
-
 [node name="ProtonScatter" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.429464, -2.02427, 0.537077)
 script = ExtResource("9_l61r5")
-render_mode = 2
-modifier_stack = SubResource("Resource_s0fjq")
+modifier_stack = SubResource("Resource_p3o5b")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 metadata/_edit_lock_ = true
@@ -324,7 +318,7 @@ shader_params/u_tile_reduction = null
 [node name="HTerrainDetailLayer" type="Node3D" parent="TERRAN/HTerrain"]
 script = ExtResource("29_h3rq6")
 texture = ExtResource("30_qwnpu")
-density = 4.728
+density = 3.0
 instance_mesh = ExtResource("31_fy4s1")
 shader_params/u_globalmap_tint_bottom = 0.0
 shader_params/u_globalmap_tint_top = 0.069
@@ -336,7 +330,7 @@ metadata/_editor_icon = ExtResource("31_cxnb6")
 [node name="HTerrainDetailLayer2" type="Node3D" parent="TERRAN/HTerrain"]
 script = ExtResource("29_h3rq6")
 texture = ExtResource("30_qwnpu")
-density = 4.728
+density = 3.0
 instance_mesh = ExtResource("31_fy4s1")
 shader_params/u_globalmap_tint_bottom = 0.0
 shader_params/u_globalmap_tint_top = 0.069
@@ -353,3 +347,6 @@ transform = Transform3D(-0.166184, 0, -0.986095, 0, 1, 0, 0.986095, 0, -0.166184
 
 [node name="Parois3" parent="." instance=ExtResource("33_xecl7")]
 transform = Transform3D(1.52747, 0.0375319, -1.23562, -0.557423, 1.77402, -0.635197, 1.10338, 0.844267, 1.38964, 33.0037, -4.33563, -23.9335)
+
+[node name="Node3D" parent="." instance=ExtResource("34_o0kc3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.78176, -6.22261, 7.84539)

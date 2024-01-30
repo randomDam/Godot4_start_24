@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cxwe8sw6fcxhg"
+path="res://.godot/imported/elevator music.mp3-ef3a1dee5ad1fe159e0748f5191dc77e.mp3str"
+
+[deps]
+
+source_file="res://Music/elevator music.mp3"
+dest_files=["res://.godot/imported/elevator music.mp3-ef3a1dee5ad1fe159e0748f5191dc77e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

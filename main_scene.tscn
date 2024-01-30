@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://b2ir0ghxj7vc3"]
+[gd_scene load_steps=45 format=3 uid="uid://b2ir0ghxj7vc3"]
 
 [ext_resource type="PackedScene" uid="uid://bh28ck1nawoci" path="res://OBJECTS/Parois1.tscn" id="1_2qhb2"]
 [ext_resource type="PackedScene" uid="uid://btfmllbek7mwv" path="res://Player/Player.tscn" id="2_mhf4y"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_shape.gd" id="15_7br2m"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/sphere_shape.gd" id="16_54yfg"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/path_shape.gd" id="17_1f63x"]
+[ext_resource type="PackedScene" uid="uid://dtb640b4n081h" path="res://OBJECTS/TabouretRadio.tscn" id="20_lf2el"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yj1ks"]
 sky_curve = 0.126134
@@ -291,7 +292,6 @@ data = ExtResource("8_jubua")
 [node name="ProtonScatter" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.429464, 0.0433335, 0.537077)
 script = ExtResource("8_i03mh")
-render_mode = 2
 modifier_stack = SubResource("Resource_0vg4s")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
@@ -315,3 +315,6 @@ shape = SubResource("Resource_aykwt")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 mesh = SubResource("CylinderMesh_wckv1")
+
+[node name="Node3D" parent="." instance=ExtResource("20_lf2el")]
+transform = Transform3D(-0.139138, 0, 0.990273, 0, 1, 0, -0.990273, 0, -0.139138, 17.6437, 0, 6.22072)
