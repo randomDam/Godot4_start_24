@@ -45,11 +45,21 @@ func _physics_process(delta):
 	else: 
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
+	#---------------------------------------------------------------
+	# use fullscreen or not
 	if Input.is_action_just_pressed("fullscreen"):
 		if(DisplayServer.window_get_mode()==DisplayServer.WINDOW_MODE_FULLSCREEN):
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 		else:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	#---------------------------------------------------------------
+	# screenshot
+	if Input.is_action_just_pressed("capture"):
+		var timeStamp = Time.get_datetime_string_from_system()
+		timeStamp = timeStamp.replace(":","_")
+		print(timeStamp)
+		var image = get_viewport().get_texture().get_image()
+		image.save_png("captures/screenshot_"+timeStamp+".png")
 	
 #---------------------------------------------------------------
 # recuparation de la souris
