@@ -19,7 +19,7 @@ size = Vector2(1000, 1000)
 [sub_resource type="BoxShape3D" id="BoxShape3D_85ow7"]
 size = Vector3(1000, 1, 1000)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_w3vvy"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ncxhc"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("2_ftpk4")
@@ -54,7 +54,7 @@ _surfaces = [{
 "format": 34359742495,
 "index_count": 12,
 "index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 3, 0, 1, 0, 0, 0, 4, 0, 5, 0, 6, 0, 7, 0, 5, 0, 4, 0),
-"material": SubResource("ShaderMaterial_w3vvy"),
+"material": SubResource("ShaderMaterial_ncxhc"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 8,
