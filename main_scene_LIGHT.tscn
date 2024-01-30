@@ -1,0 +1,206 @@
+[gd_scene load_steps=24 format=3 uid="uid://c4hewvicu5pou"]
+
+[ext_resource type="PackedScene" uid="uid://btfmllbek7mwv" path="res://Player/Player.tscn" id="1_hmnd8"]
+[ext_resource type="PackedScene" uid="uid://csphts0qqn4en" path="res://PlanSimple.tscn" id="2_boltm"]
+[ext_resource type="Texture2D" uid="uid://cs6axl2hativ0" path="res://Textures/grid.png" id="3_rxvkj"]
+[ext_resource type="Shader" path="res://shader/effectVignColor.gdshader" id="4_dyl0a"]
+[ext_resource type="Shader" path="res://shader/noise.gdshader" id="5_ksjta"]
+[ext_resource type="FontFile" uid="uid://7mcak38aog2e" path="res://font/FiraCode-Medium.ttf" id="6_31g42"]
+[ext_resource type="Script" path="res://script/fps.gd" id="7_bfcsj"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yj1ks"]
+sky_curve = 0.126134
+
+[sub_resource type="Sky" id="Sky_awi5y"]
+sky_material = SubResource("ProceduralSkyMaterial_yj1ks")
+
+[sub_resource type="Environment" id="Environment_g5h1w"]
+background_mode = 2
+sky = SubResource("Sky_awi5y")
+ambient_light_source = 3
+ambient_light_color = Color(0, 0, 0.396078, 1)
+ambient_light_sky_contribution = 0.42
+tonemap_mode = 2
+sdfgi_use_occlusion = true
+glow_enabled = true
+glow_strength = 0.44
+glow_bloom = 0.59
+glow_blend_mode = 0
+fog_sky_affect = 0.2
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.014
+volumetric_fog_detail_spread = 1.8025
+volumetric_fog_sky_affect = 0.067
+adjustment_enabled = true
+adjustment_saturation = 0.7
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_afenx"]
+dof_blur_far_distance = 4.6
+dof_blur_far_transition = 19.2
+dof_blur_near_distance = 2.71
+dof_blur_near_transition = 1.7
+auto_exposure_min_sensitivity = 413.55
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_etg5i"]
+albedo_color = Color(0.298039, 0.721569, 0.917647, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tancq"]
+material = SubResource("ORMMaterial3D_etg5i")
+
+[sub_resource type="Gradient" id="Gradient_4lsnw"]
+offsets = PackedFloat32Array(0.446154, 0.538462)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_h0168"]
+frequency = 0.233
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_ncq08"]
+width = 256
+height = 256
+depth = 256
+color_ramp = SubResource("Gradient_4lsnw")
+noise = SubResource("FastNoiseLite_h0168")
+
+[sub_resource type="FogMaterial" id="FogMaterial_kasbf"]
+density = 1.1764
+albedo = Color(0.85098, 0.85098, 0.85098, 1)
+height_falloff = 0.316519
+edge_fade = 0.303143
+density_texture = SubResource("NoiseTexture3D_ncq08")
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_gfs3w"]
+albedo_texture = ExtResource("3_rxvkj")
+orm_texture = ExtResource("3_rxvkj")
+uv1_scale = Vector3(50, 50, 50)
+
+[sub_resource type="BoxMesh" id="BoxMesh_o78qh"]
+material = SubResource("ORMMaterial3D_gfs3w")
+size = Vector3(100, 100, 100)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0qv7e"]
+shader = ExtResource("4_dyl0a")
+shader_parameter/blur_radius = 0.167
+shader_parameter/blur_amount = 2.05
+shader_parameter/blur_inner = 0.592
+shader_parameter/blur_outer = 0.71
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yj33p"]
+shader = ExtResource("5_ksjta")
+shader_parameter/grainamount = 0.06
+shader_parameter/colored = true
+shader_parameter/coloramount = 0.6
+shader_parameter/grainsize = 2.195
+shader_parameter/lumamount = 0.3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xtsdb"]
+transparency = 1
+albedo_color = Color(1, 0.356863, 0.290196, 0.878431)
+metallic = 0.63
+roughness = 0.49
+emission_enabled = true
+emission = Color(1, 0.0196078, 0.0196078, 1)
+rim = 0.03
+subsurf_scatter_enabled = true
+subsurf_scatter_strength = 1.0
+backlight_enabled = true
+backlight = Color(1, 0.509804, 0.67451, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_wckv1"]
+material = SubResource("StandardMaterial3D_xtsdb")
+top_radius = 0.3
+bottom_radius = 0.3
+height = 8.47
+
+[node name="MainScene" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_g5h1w")
+camera_attributes = SubResource("CameraAttributesPractical_afenx")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.682901, 0.284691, -0.672754, -0.0768771, 0.943829, 0.321366, 0.726455, -0.167741, 0.666428, 0, 4.16975, 0)
+shadow_enabled = true
+shadow_blur = 0.25
+
+[node name="cube" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.98387, 0.502832, -2.24759)
+mesh = SubResource("BoxMesh_tancq")
+
+[node name="cube2" type="MeshInstance3D" parent="."]
+transform = Transform3D(4.7674, 0, -0.762781, 0, 6.80308, 0, 5.62351, 0, 0.646657, 7.45037, 2.92921, -2.24759)
+mesh = SubResource("BoxMesh_tancq")
+
+[node name="Player" parent="." instance=ExtResource("1_hmnd8")]
+
+[node name="Plan2" parent="." instance=ExtResource("2_boltm")]
+
+[node name="FogVolume" type="FogVolume" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0040164, -3.76032, 0.010602)
+visible = false
+size = Vector3(100, 22.3551, 100)
+shape = 2
+material = SubResource("FogMaterial_kasbf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -343.558, 55.5145, 251.12)
+mesh = SubResource("BoxMesh_o78qh")
+
+[node name="color" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="color"]
+material = SubResource("ShaderMaterial_0qv7e")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.839216, 0.141176, 0.443137, 0.184314)
+
+[node name="ColorRect2" type="ColorRect" parent="color"]
+material = SubResource("ShaderMaterial_yj33p")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="fpsCounter" type="CanvasLayer" parent="."]
+
+[node name="fpsCounter" type="Control" parent="fpsCounter"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 215.0
+offset_bottom = 115.0
+metadata/_edit_lock_ = true
+
+[node name="back" type="ColorRect" parent="fpsCounter/fpsCounter"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 102.0
+offset_bottom = 44.0
+color = Color(0, 0, 0, 1)
+
+[node name="fps" type="Label" parent="fpsCounter/fpsCounter"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 102.0
+offset_bottom = 44.0
+theme_override_fonts/font = ExtResource("6_31g42")
+theme_override_font_sizes/font_size = 12
+text = "fps : 30"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("7_bfcsj")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(0.910903, -0.00579117, -0.412581, 0.412461, -0.0151252, 0.91085, -0.0115152, -0.999869, -0.0113889, -1.55652, 5.68856, -1.42854)
+light_color = Color(1, 0.901961, 0.545098, 1)
+light_energy = 3.233
+shadow_enabled = true
+spot_range = 26.5056
+spot_attenuation = 0.133972
+spot_angle_attenuation = 0.0980732
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_wckv1")

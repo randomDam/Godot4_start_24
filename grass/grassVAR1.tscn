@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://b28817r7a3vgc"]
+
+[ext_resource type="ArrayMesh" uid="uid://bujha75rhkdb4" path="res://grass/grassVAR1.tres" id="1_yt2sp"]
+
+[node name="grass" type="Node3D"]
+
+[node name="_v3ft_Var3_LOD0" type="MeshInstance3D" parent="."]
+visibility_range_end = 3.0
+mesh = ExtResource("1_yt2sp")
+skeleton = NodePath("")

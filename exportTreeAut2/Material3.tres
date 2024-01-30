@@ -1,0 +1,60 @@
+[gd_resource type="ShaderMaterial" load_steps=8 format=3 uid="uid://brxaajrb2uyqk"]
+
+[ext_resource type="Texture2D" uid="uid://be2nllk7lp6ft" path="res://exportTreeAut2/Broadleaf_Hero_Field_Normal.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://018171vnolyt" path="res://exportTreeAut2/Broadleaf_Hero_Field_SS.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://bt8ik7cr1lglw" path="res://exportTreeAut2/Broadleaf_Hero_Field_Color.png" id="3"]
+
+[sub_resource type="VisualShaderNodeTexture" id="8"]
+texture = ExtResource("3")
+
+[sub_resource type="VisualShaderNodeTexture" id="9"]
+texture = ExtResource("1")
+
+[sub_resource type="VisualShaderNodeTexture" id="10"]
+texture = ExtResource("2")
+
+[sub_resource type="VisualShader" id="11"]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_lambert, specular_schlick_ggx;
+
+uniform sampler2D tex_frg_2;
+uniform sampler2D tex_frg_4;
+uniform sampler2D tex_frg_3;
+
+
+
+void fragment() {
+// Texture2D:2
+	vec4 n_out2p0 = texture(tex_frg_2, UV);
+
+
+// Texture2D:4
+	vec4 n_out4p0 = texture(tex_frg_4, UV);
+
+
+// Texture2D:3
+	vec4 n_out3p0 = texture(tex_frg_3, UV);
+
+
+// Output:0
+	ALBEDO = vec3(n_out2p0.xyz);
+	AO = n_out4p0.x;
+	AO_LIGHT_AFFECT = n_out3p0.x;
+
+
+}
+"
+graph_offset = Vector2(-208, -31)
+modes/cull = 2
+nodes/fragment/0/position = Vector2(560, 140)
+nodes/fragment/2/node = SubResource("8")
+nodes/fragment/2/position = Vector2(20, 40)
+nodes/fragment/3/node = SubResource("9")
+nodes/fragment/3/position = Vector2(20, 260)
+nodes/fragment/4/node = SubResource("10")
+nodes/fragment/4/position = Vector2(20, 480)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 0, 3, 0, 0, 7, 4, 0, 0, 6)
+
+[resource]
+render_priority = 0
+shader = SubResource("11")

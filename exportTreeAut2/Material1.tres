@@ -1,0 +1,52 @@
+[gd_resource type="ShaderMaterial" load_steps=7 format=3 uid="uid://ch0pb5lju1li0"]
+
+[ext_resource type="Texture2D" uid="uid://cxc1wi5hkh1l3" path="res://exportTreeAut2/Main_Bark_Color.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://dupp4b86ubxkx" path="res://exportTreeAut2/Main_Bark_Normal.png" id="2"]
+
+[sub_resource type="VisualShaderNodeTexture" id="3"]
+texture = ExtResource("1")
+
+[sub_resource type="VisualShaderNodeTexture" id="4"]
+texture = ExtResource("2")
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="7"]
+parameter_name = "ScalarUniform"
+
+[sub_resource type="VisualShader" id="5"]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+uniform sampler2D tex_frg_2;
+uniform sampler2D tex_frg_3;
+
+
+
+void fragment() {
+// Texture2D:2
+	vec4 n_out2p0 = texture(tex_frg_2, UV);
+
+
+// Texture2D:3
+	vec4 n_out3p0 = texture(tex_frg_3, UV);
+
+
+// Output:0
+	ALBEDO = vec3(n_out2p0.xyz);
+	AO_LIGHT_AFFECT = n_out3p0.x;
+
+
+}
+"
+graph_offset = Vector2(-277, -21)
+nodes/fragment/0/position = Vector2(840, 100)
+nodes/fragment/2/node = SubResource("3")
+nodes/fragment/2/position = Vector2(100, 0)
+nodes/fragment/3/node = SubResource("4")
+nodes/fragment/3/position = Vector2(-100, 60)
+nodes/fragment/4/node = SubResource("7")
+nodes/fragment/4/position = Vector2(80, 300)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 0, 3, 0, 0, 7)
+
+[resource]
+render_priority = 0
+shader = SubResource("5")

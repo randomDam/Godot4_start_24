@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://csphts0qqn4en"]
+
+[ext_resource type="Texture2D" uid="uid://cs6axl2hativ0" path="res://Textures/grid.png" id="1_gc4vv"]
+[ext_resource type="PackedScene" uid="uid://crb5e04s0vg8f" path="res://exportTreeAut2/Arbre.tscn" id="5_rlnrf"]
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_5grjd"]
+albedo_color = Color(0.815686, 0.815686, 0.815686, 1)
+albedo_texture = ExtResource("1_gc4vv")
+orm_texture = ExtResource("1_gc4vv")
+uv1_scale = Vector3(500, 500, 500)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_sccme"]
+material = SubResource("ORMMaterial3D_5grjd")
+size = Vector2(1000, 1000)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_85ow7"]
+size = Vector3(1000, 1, 1000)
+
+[node name="Plan" type="StaticBody3D"]
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="plan" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_sccme")
+skeleton = NodePath("../..")
+
+[node name="collisionPlan" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_85ow7")
+
+[node name="LOD0" parent="." instance=ExtResource("5_rlnrf")]
