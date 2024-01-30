@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bh28ck1nawoci"]
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_etg5i"]
+albedo_color = Color(0.298039, 0.721569, 0.917647, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tancq"]
+material = SubResource("ORMMaterial3D_etg5i")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_naoc1"]
+size = Vector3(7.37357, 6.77881, 1)
+
+[node name="Parois" type="StaticBody3D"]
+
+[node name="cube2" type="MeshInstance3D" parent="."]
+transform = Transform3D(7.37238, 0, 0, 0, 6.80308, 0, 0, 0, 1, 0, 3.35709, 0)
+mesh = SubResource("BoxMesh_tancq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.37524, 0)
+shape = SubResource("BoxShape3D_naoc1")

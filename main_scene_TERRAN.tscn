@@ -1,0 +1,355 @@
+[gd_scene load_steps=55 format=3 uid="uid://0t41ua8yvty0"]
+
+[ext_resource type="PackedScene" uid="uid://btfmllbek7mwv" path="res://Player/Player.tscn" id="1_3qdvq"]
+[ext_resource type="Texture2D" uid="uid://cs6axl2hativ0" path="res://Textures/grid.png" id="3_oc051"]
+[ext_resource type="Shader" path="res://shader/effectVignColor.gdshader" id="4_o1ino"]
+[ext_resource type="Shader" path="res://shader/noise.gdshader" id="5_h3t2h"]
+[ext_resource type="FontFile" uid="uid://7mcak38aog2e" path="res://font/FiraCode-Medium.ttf" id="6_m6pat"]
+[ext_resource type="Script" path="res://script/fps.gd" id="7_2h6sg"]
+[ext_resource type="VoxelGIData" uid="uid://chl2068fg1ll" path="res://gi/main_scene.VoxelGI_data.res" id="8_0v4dg"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter.gd" id="9_l61r5"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="10_hwhxs"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="11_tt5rq"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/randomize_transforms.gd" id="12_qhqhp"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/relax.gd" id="13_qj2ib"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/project_on_geometry.gd" id="14_yvh0i"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_item.gd" id="15_gtv4c"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_shape.gd" id="16_44hi2"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/sphere_shape.gd" id="17_tcmkp"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/path_shape.gd" id="18_vlac5"]
+[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="19_86pik"]
+[ext_resource type="Resource" path="res://terranDATA/data.hterrain" id="20_xeo11"]
+[ext_resource type="Texture2D" uid="uid://dl6vppfyd8x4p" path="res://main_scene_TERRAN_slot0_albedo_bump.png" id="21_2mbam"]
+[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="21_flh24"]
+[ext_resource type="Texture2D" uid="uid://b2dme5wkitch8" path="res://main_scene_TERRAN_slot1_albedo_bump.png" id="22_pqeea"]
+[ext_resource type="Texture2D" uid="uid://bppkhu2goi47r" path="res://main_scene_TERRAN_slot2_albedo_bump.png" id="23_k641s"]
+[ext_resource type="Texture2D" uid="uid://88y25cv3wkup" path="res://main_scene_TERRAN_slot3_albedo_bump.png" id="24_1ysvx"]
+[ext_resource type="Texture2D" uid="uid://cib0mv8rd7ckl" path="res://main_scene_TERRAN_slot0_normal_roughness.png" id="25_ia2f4"]
+[ext_resource type="Texture2D" uid="uid://157doh7nuqad" path="res://main_scene_TERRAN_slot1_normal_roughness.png" id="26_fpr5k"]
+[ext_resource type="Texture2D" uid="uid://c6xcbjjjpvjl4" path="res://main_scene_TERRAN_slot2_normal_roughness.png" id="27_6rsvg"]
+[ext_resource type="Texture2D" uid="uid://btisoai3lifa6" path="res://main_scene_TERRAN_slot3_normal_roughness.png" id="28_q3yts"]
+[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_detail_layer.gd" id="29_h3rq6"]
+[ext_resource type="Texture2D" uid="uid://dhvrmo3bcvawe" path="res://Textures/grass/grass6.png" id="30_qwnpu"]
+[ext_resource type="Texture2D" uid="uid://6jmdwj3vn6m0" path="res://addons/zylann.hterrain/tools/icons/icon_detail_layer_node.svg" id="31_cxnb6"]
+[ext_resource type="ArrayMesh" uid="uid://bhjb8bijf1ql3" path="res://addons/zylann.hterrain/models/grass_quad_x3.obj" id="31_fy4s1"]
+[ext_resource type="PackedScene" uid="uid://bh28ck1nawoci" path="res://OBJECTS/Parois1.tscn" id="33_xecl7"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yj1ks"]
+sky_curve = 0.126134
+
+[sub_resource type="Sky" id="Sky_awi5y"]
+sky_material = SubResource("ProceduralSkyMaterial_yj1ks")
+
+[sub_resource type="Environment" id="Environment_g5h1w"]
+background_mode = 2
+sky = SubResource("Sky_awi5y")
+ambient_light_source = 3
+ambient_light_color = Color(0, 0, 0.396078, 1)
+ambient_light_sky_contribution = 0.42
+tonemap_mode = 2
+ssao_enabled = true
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
+glow_enabled = true
+glow_normalized = true
+glow_strength = 0.9
+glow_bloom = 0.49
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.004
+volumetric_fog_detail_spread = 1.56917
+volumetric_fog_ambient_inject = 11.73
+volumetric_fog_sky_affect = 0.0
+adjustment_enabled = true
+adjustment_saturation = 0.7
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_afenx"]
+dof_blur_far_distance = 4.6
+dof_blur_far_transition = 19.2
+dof_blur_near_distance = 2.71
+dof_blur_near_transition = 1.7
+auto_exposure_min_sensitivity = 413.55
+
+[sub_resource type="Gradient" id="Gradient_4lsnw"]
+offsets = PackedFloat32Array(0.446154, 0.538462)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_h0168"]
+frequency = 0.233
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_ncq08"]
+width = 256
+height = 256
+depth = 256
+color_ramp = SubResource("Gradient_4lsnw")
+noise = SubResource("FastNoiseLite_h0168")
+
+[sub_resource type="FogMaterial" id="FogMaterial_kasbf"]
+density = 0.0044
+albedo = Color(0.223529, 0.482353, 0.74902, 1)
+height_falloff = 0.403423
+edge_fade = 0.414106
+density_texture = SubResource("NoiseTexture3D_ncq08")
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_gfs3w"]
+albedo_texture = ExtResource("3_oc051")
+orm_texture = ExtResource("3_oc051")
+uv1_scale = Vector3(50, 50, 50)
+
+[sub_resource type="BoxMesh" id="BoxMesh_o78qh"]
+material = SubResource("ORMMaterial3D_gfs3w")
+size = Vector3(100, 100, 100)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0qv7e"]
+shader = ExtResource("4_o1ino")
+shader_parameter/blur_radius = 0.167
+shader_parameter/blur_amount = 2.05
+shader_parameter/blur_inner = 0.592
+shader_parameter/blur_outer = 0.71
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yj33p"]
+shader = ExtResource("5_h3t2h")
+shader_parameter/grainamount = 0.06
+shader_parameter/colored = true
+shader_parameter/coloramount = 0.6
+shader_parameter/grainsize = 2.195
+shader_parameter/lumamount = 0.3
+
+[sub_resource type="Resource" id="Resource_egcp5"]
+script = ExtResource("11_tt5rq")
+amount = 700
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = true
+reference_frame = 1
+
+[sub_resource type="Resource" id="Resource_ei115"]
+script = ExtResource("12_qhqhp")
+position = Vector3(0.15, 0.15, 0.15)
+rotation = Vector3(20, 360, 20)
+scale = Vector3(0.3, 0.3, 0.3)
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_74tpp"]
+script = ExtResource("13_qj2ib")
+iterations = 3
+offset_step = 0.2
+consecutive_step_multiplier = 0.75
+use_computeshader = true
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = true
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_bc80y"]
+script = ExtResource("14_yvh0i")
+ray_direction = Vector3(0, -1, 0)
+ray_length = 5.0
+ray_offset = 5.0
+remove_points_on_miss = false
+align_with_collision_normal = false
+max_slope = 90.0
+collision_mask = 1
+exclude_mask = 0
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_s0fjq"]
+script = ExtResource("10_hwhxs")
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_egcp5"), SubResource("Resource_ei115"), SubResource("Resource_74tpp"), SubResource("Resource_bc80y")])
+
+[sub_resource type="Resource" id="Resource_g8bsm"]
+script = ExtResource("17_tcmkp")
+radius = 3.26122
+
+[sub_resource type="Curve3D" id="Curve3D_4kcum"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -8.23974, -4.76837e-07, -1.73641, 0, 0, 0, 0, 0, 0, -11.5052, -4.76837e-07, 1.64054, -1.19506, -4.76837e-07, -1.29189, 1.19506, 4.76837e-07, 1.29189, -6.77983, 4.76837e-07, 7.56286, -3.5286, 4.76837e-07, 0.71216, 3.5286, -4.76837e-07, -0.71216, 0.646849, 4.76837e-07, 9.05787, 0, 0, 0, 0, 0, 0, 11.1868, -1.19209e-07, 5.74518, 1.87883, 0, 3.51327, -1.87883, 0, -3.51327, 13.9862, 2.38419e-07, -6.37547, 0, 0, 0, 0, 0, 0, -4.7131, -4.76837e-07, -5.01436, 0, 0, 0, 0, 0, 0, -7.84042, -4.76837e-07, -7.83965, 0, 0, 0, 0, 0, 0, -7.83932, 4.76837e-07, -3.68449),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 9
+
+[sub_resource type="Resource" id="Resource_aykwt"]
+script = ExtResource("18_vlac5")
+closed = true
+thickness = 0.0
+curve = SubResource("Curve3D_4kcum")
+
+[sub_resource type="Resource" id="Resource_a121e"]
+script = ExtResource("21_flh24")
+mode = 0
+textures = [[ExtResource("21_2mbam"), ExtResource("22_pqeea"), ExtResource("23_k641s"), ExtResource("24_1ysvx")], [ExtResource("25_ia2f4"), ExtResource("26_fpr5k"), ExtResource("27_6rsvg"), ExtResource("28_q3yts")]]
+
+[node name="MainScene" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_g5h1w")
+camera_attributes = SubResource("CameraAttributesPractical_afenx")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.682901, 0.284691, -0.672754, -0.0768771, 0.943829, 0.321366, 0.726455, -0.167741, 0.666428, 0, 4.16975, 0)
+shadow_enabled = true
+shadow_blur = 0.25
+
+[node name="Player" parent="." instance=ExtResource("1_3qdvq")]
+
+[node name="FogVolume" type="FogVolume" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0040164, -3.76032, 0.010602)
+size = Vector3(100, 22.3551, 100)
+shape = 2
+material = SubResource("FogMaterial_kasbf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -343.558, 55.5145, 251.12)
+mesh = SubResource("BoxMesh_o78qh")
+
+[node name="color" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="color"]
+material = SubResource("ShaderMaterial_0qv7e")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.839216, 0.141176, 0.443137, 0.184314)
+
+[node name="ColorRect2" type="ColorRect" parent="color"]
+material = SubResource("ShaderMaterial_yj33p")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="fpsCounter" type="CanvasLayer" parent="."]
+
+[node name="fpsCounter" type="Control" parent="fpsCounter"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 215.0
+offset_bottom = 115.0
+metadata/_edit_lock_ = true
+
+[node name="back" type="ColorRect" parent="fpsCounter/fpsCounter"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 102.0
+offset_bottom = 44.0
+color = Color(0, 0, 0, 1)
+
+[node name="fps" type="Label" parent="fpsCounter/fpsCounter"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 102.0
+offset_bottom = 44.0
+theme_override_fonts/font = ExtResource("6_m6pat")
+theme_override_font_sizes/font_size = 12
+text = "fps : 30"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("7_2h6sg")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(0.910903, -0.00579117, -0.412581, 0.412461, -0.0151252, 0.91085, -0.0115152, -0.999869, -0.0113889, -1.55652, 5.68856, -1.42854)
+light_color = Color(1, 0.901961, 0.545098, 1)
+light_energy = 3.233
+shadow_enabled = true
+spot_range = 26.5056
+spot_attenuation = 0.133972
+spot_angle_attenuation = 0.0980732
+
+[node name="VoxelGI" type="VoxelGI" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.44385, 1.55715, 1.84119)
+size = Vector3(38.8076, 20, 29.8303)
+data = ExtResource("8_0v4dg")
+
+[node name="ProtonScatter" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.429464, -2.02427, 0.537077)
+script = ExtResource("9_l61r5")
+render_mode = 2
+modifier_stack = SubResource("Resource_s0fjq")
+Performance/use_chunks = true
+Performance/chunk_dimensions = Vector3(15, 15, 15)
+metadata/_edit_lock_ = true
+
+[node name="ScatterItem" type="Node3D" parent="ProtonScatter"]
+script = ExtResource("15_gtv4c")
+source_scale_multiplier = 4.725
+path = "res://grass/grassVAR1.tscn"
+
+[node name="ScatterShape" type="Node3D" parent="ProtonScatter"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 18.71, -5.45848, -3.65035)
+visible = false
+script = ExtResource("16_44hi2")
+shape = SubResource("Resource_g8bsm")
+
+[node name="ScatterShape2" type="Node3D" parent="ProtonScatter"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, -1.95177, 0.265941, 7.77386)
+visible = false
+script = ExtResource("16_44hi2")
+shape = SubResource("Resource_aykwt")
+
+[node name="TERRAN" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -250, 0, -250)
+metadata/_edit_lock_ = true
+
+[node name="HTerrain" type="Node3D" parent="TERRAN"]
+script = ExtResource("19_86pik")
+_terrain_data = ExtResource("20_xeo11")
+chunk_size = 32
+collision_enabled = true
+collision_layer = 1
+collision_mask = 1
+shader_type = "Classic4Lite"
+custom_shader = null
+custom_globalmap_shader = null
+texture_set = SubResource("Resource_a121e")
+render_layers = 1
+cast_shadow = 1
+shader_params/u_ground_uv_scale = 5.0
+shader_params/u_depth_blending = true
+shader_params/u_triplanar = true
+shader_params/u_tile_reduction = null
+
+[node name="HTerrainDetailLayer" type="Node3D" parent="TERRAN/HTerrain"]
+script = ExtResource("29_h3rq6")
+texture = ExtResource("30_qwnpu")
+density = 4.728
+instance_mesh = ExtResource("31_fy4s1")
+shader_params/u_globalmap_tint_bottom = 0.0
+shader_params/u_globalmap_tint_top = 0.069
+shader_params/u_bottom_ao = 0.441
+shader_params/u_instance_scale = null
+shader_params/u_roughness = 0.175
+metadata/_editor_icon = ExtResource("31_cxnb6")
+
+[node name="HTerrainDetailLayer2" type="Node3D" parent="TERRAN/HTerrain"]
+script = ExtResource("29_h3rq6")
+texture = ExtResource("30_qwnpu")
+density = 4.728
+instance_mesh = ExtResource("31_fy4s1")
+shader_params/u_globalmap_tint_bottom = 0.0
+shader_params/u_globalmap_tint_top = 0.069
+shader_params/u_bottom_ao = 0.441
+shader_params/u_instance_scale = null
+shader_params/u_roughness = 0.175
+metadata/_editor_icon = ExtResource("31_cxnb6")
+
+[node name="Parois" parent="." instance=ExtResource("33_xecl7")]
+transform = Transform3D(0.777058, 0, -0.629429, 0, 1, 0, 0.629429, 0, 0.777058, 10.1312, -5.17487, -6.19641)
+
+[node name="Parois2" parent="." instance=ExtResource("33_xecl7")]
+transform = Transform3D(-0.166184, 0, -0.986095, 0, 1, 0, 0.986095, 0, -0.166184, 24.8724, -4.76093, -3.28202)
+
+[node name="Parois3" parent="." instance=ExtResource("33_xecl7")]
+transform = Transform3D(1.52747, 0.0375319, -1.23562, -0.557423, 1.77402, -0.635197, 1.10338, 0.844267, 1.38964, 33.0037, -4.33563, -23.9335)

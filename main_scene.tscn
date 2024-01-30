@@ -1,5 +1,6 @@
-[gd_scene load_steps=43 format=3 uid="uid://b2ir0ghxj7vc3"]
+[gd_scene load_steps=44 format=3 uid="uid://b2ir0ghxj7vc3"]
 
+[ext_resource type="PackedScene" uid="uid://bh28ck1nawoci" path="res://OBJECTS/Parois1.tscn" id="1_2qhb2"]
 [ext_resource type="PackedScene" uid="uid://btfmllbek7mwv" path="res://Player/Player.tscn" id="2_mhf4y"]
 [ext_resource type="PackedScene" uid="uid://drfac3uhf2oo1" path="res://Plan.tscn" id="3_pwa73"]
 [ext_resource type="FontFile" uid="uid://7mcak38aog2e" path="res://font/FiraCode-Medium.ttf" id="4_cgnby"]
@@ -104,7 +105,7 @@ shader_parameter/coloramount = 0.6
 shader_parameter/grainsize = 2.195
 shader_parameter/lumamount = 0.3
 
-[sub_resource type="Resource" id="Resource_egcp5"]
+[sub_resource type="Resource" id="Resource_kle1r"]
 script = ExtResource("10_dwbt2")
 amount = 700
 enabled = true
@@ -113,7 +114,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_ei115"]
+[sub_resource type="Resource" id="Resource_comm6"]
 script = ExtResource("11_78lvg")
 position = Vector3(0.15, 0.15, 0.15)
 rotation = Vector3(20, 360, 20)
@@ -124,7 +125,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_74tpp"]
+[sub_resource type="Resource" id="Resource_alk0k"]
 script = ExtResource("12_8l0dp")
 iterations = 3
 offset_step = 0.2
@@ -136,7 +137,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_bc80y"]
+[sub_resource type="Resource" id="Resource_u8es3"]
 script = ExtResource("13_sx1je")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 5.0
@@ -152,9 +153,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_s0fjq"]
+[sub_resource type="Resource" id="Resource_0vg4s"]
 script = ExtResource("9_aslq1")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_egcp5"), SubResource("Resource_ei115"), SubResource("Resource_74tpp"), SubResource("Resource_bc80y")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_kle1r"), SubResource("Resource_comm6"), SubResource("Resource_alk0k"), SubResource("Resource_u8es3")])
 
 [sub_resource type="Resource" id="Resource_g8bsm"]
 script = ExtResource("16_54yfg")
@@ -207,9 +208,8 @@ shadow_blur = 0.25
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.98387, 0.502832, -2.24759)
 mesh = SubResource("BoxMesh_tancq")
 
-[node name="cube2" type="MeshInstance3D" parent="."]
-transform = Transform3D(4.7674, 0, -0.762781, 0, 6.80308, 0, 5.62351, 0, 0.646657, 7.45037, 2.92921, -2.24759)
-mesh = SubResource("BoxMesh_tancq")
+[node name="Parois" parent="." instance=ExtResource("1_2qhb2")]
+transform = Transform3D(0.616624, 0, -0.787258, 0, 1, 0, 0.787258, 0, 0.616624, 12.2759, -0.116601, -1.13457)
 
 [node name="Player" parent="." instance=ExtResource("2_mhf4y")]
 
@@ -292,7 +292,7 @@ data = ExtResource("8_jubua")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.429464, 0.0433335, 0.537077)
 script = ExtResource("8_i03mh")
 render_mode = 2
-modifier_stack = SubResource("Resource_s0fjq")
+modifier_stack = SubResource("Resource_0vg4s")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 

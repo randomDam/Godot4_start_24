@@ -5,7 +5,9 @@ extends CharacterBody3D
 @onready var camera:Camera3D = $Camera3D
 @export var immersif=true
 
-var look_sensitivity = 0.002
+@export var look_sensitivity = 0.002
+@export var look_sensitivity_joystick = 3.0
+
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var velocity_y = 0
 
@@ -30,8 +32,8 @@ func _physics_process(delta):
 	#---------------------------------------------------------------
 	# Gestion de la vue
 	var view = Input.get_vector("view_left","view_right","view_up","view_down")
-	rotate_y(-view.x * 0.01)
-	camera.rotate_x(-view.y * 0.01)
+	rotate_y(-view.x * 0.01 * look_sensitivity_joystick)
+	camera.rotate_x(-view.y * 0.01 * look_sensitivity_joystick)
 	camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2)
 	
 	#---------------------------------------------------------------
@@ -43,6 +45,11 @@ func _physics_process(delta):
 	else: 
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
+	if Input.is_action_just_pressed("fullscreen"):
+		if(DisplayServer.window_get_mode()==DisplayServer.WINDOW_MODE_FULLSCREEN):
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		else:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	
 #---------------------------------------------------------------
 # recuparation de la souris
