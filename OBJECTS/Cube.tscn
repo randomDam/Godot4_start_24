@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bjetb0lk0hdiq"]
+
+[ext_resource type="Script" path="res://script/RigidCollid.gd" id="1_joh4i"]
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_etg5i"]
+albedo_color = Color(0.298039, 0.721569, 0.917647, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tancq"]
+material = SubResource("ORMMaterial3D_etg5i")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h6854"]
+size = Vector3(0.998535, 1, 1)
+
+[node name="RigidBody3D" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.98387, 0.502832, -2.24759)
+script = ExtResource("1_joh4i")
+
+[node name="cube" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_tancq")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000732422, 0, 0)
+shape = SubResource("BoxShape3D_h6854")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://b2ir0ghxj7vc3"]
+[gd_scene load_steps=44 format=3 uid="uid://b2ir0ghxj7vc3"]
 
 [ext_resource type="PackedScene" uid="uid://bh28ck1nawoci" path="res://OBJECTS/Parois1.tscn" id="1_2qhb2"]
 [ext_resource type="PackedScene" uid="uid://btfmllbek7mwv" path="res://Player/Player.tscn" id="2_mhf4y"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/sphere_shape.gd" id="16_54yfg"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/path_shape.gd" id="17_1f63x"]
 [ext_resource type="PackedScene" uid="uid://dtb640b4n081h" path="res://OBJECTS/TabouretRadio.tscn" id="20_lf2el"]
+[ext_resource type="PackedScene" uid="uid://bjetb0lk0hdiq" path="res://OBJECTS/Cube.tscn" id="21_q4y5j"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yj1ks"]
 sky_curve = 0.126134
@@ -56,12 +57,6 @@ dof_blur_near_distance = 2.71
 dof_blur_near_transition = 1.7
 auto_exposure_min_sensitivity = 413.55
 
-[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_etg5i"]
-albedo_color = Color(0.298039, 0.721569, 0.917647, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_tancq"]
-material = SubResource("ORMMaterial3D_etg5i")
-
 [sub_resource type="Gradient" id="Gradient_4lsnw"]
 offsets = PackedFloat32Array(0.446154, 0.538462)
 
@@ -91,13 +86,6 @@ uv1_scale = Vector3(50, 50, 50)
 material = SubResource("ORMMaterial3D_gfs3w")
 size = Vector3(100, 100, 100)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0qv7e"]
-shader = ExtResource("6_x0luk")
-shader_parameter/blur_radius = 0.167
-shader_parameter/blur_amount = 2.05
-shader_parameter/blur_inner = 0.592
-shader_parameter/blur_outer = 0.71
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yj33p"]
 shader = ExtResource("5_7m5k4")
 shader_parameter/grainamount = 0.06
@@ -106,7 +94,14 @@ shader_parameter/coloramount = 0.6
 shader_parameter/grainsize = 2.195
 shader_parameter/lumamount = 0.3
 
-[sub_resource type="Resource" id="Resource_aispq"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0qv7e"]
+shader = ExtResource("6_x0luk")
+shader_parameter/blur_radius = 0.167
+shader_parameter/blur_amount = 2.05
+shader_parameter/blur_inner = 0.592
+shader_parameter/blur_outer = 0.71
+
+[sub_resource type="Resource" id="Resource_8j31p"]
 script = ExtResource("10_dwbt2")
 amount = 700
 enabled = true
@@ -115,7 +110,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_j3idj"]
+[sub_resource type="Resource" id="Resource_1o205"]
 script = ExtResource("11_78lvg")
 position = Vector3(0.15, 0.15, 0.15)
 rotation = Vector3(20, 360, 20)
@@ -126,7 +121,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_xteqh"]
+[sub_resource type="Resource" id="Resource_d13ch"]
 script = ExtResource("12_8l0dp")
 iterations = 3
 offset_step = 0.2
@@ -138,7 +133,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_6snht"]
+[sub_resource type="Resource" id="Resource_cdydc"]
 script = ExtResource("13_sx1je")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 5.0
@@ -154,9 +149,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_d22pw"]
+[sub_resource type="Resource" id="Resource_xwjm8"]
 script = ExtResource("9_aslq1")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_aispq"), SubResource("Resource_j3idj"), SubResource("Resource_xteqh"), SubResource("Resource_6snht")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_8j31p"), SubResource("Resource_1o205"), SubResource("Resource_d13ch"), SubResource("Resource_cdydc")])
 
 [sub_resource type="Resource" id="Resource_g8bsm"]
 script = ExtResource("16_54yfg")
@@ -205,10 +200,6 @@ transform = Transform3D(0.682901, 0.284691, -0.672754, -0.0768771, 0.943829, 0.3
 shadow_enabled = true
 shadow_blur = 0.25
 
-[node name="cube" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.98387, 0.502832, -2.24759)
-mesh = SubResource("BoxMesh_tancq")
-
 [node name="Parois" parent="." instance=ExtResource("1_2qhb2")]
 transform = Transform3D(0.616624, 0, -0.787258, 0, 1, 0, 0.787258, 0, 0.616624, 12.2759, -0.116601, -1.13457)
 
@@ -226,9 +217,17 @@ material = SubResource("FogMaterial_kasbf")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -343.558, 55.5145, 251.12)
 mesh = SubResource("BoxMesh_o78qh")
 
-[node name="color" type="CanvasLayer" parent="."]
+[node name="filter" type="CanvasLayer" parent="."]
 
-[node name="ColorRect" type="ColorRect" parent="color"]
+[node name="grainNoise" type="ColorRect" parent="filter"]
+material = SubResource("ShaderMaterial_yj33p")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="contourBlur" type="ColorRect" parent="filter"]
 material = SubResource("ShaderMaterial_0qv7e")
 anchors_preset = 15
 anchor_right = 1.0
@@ -236,14 +235,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.839216, 0.141176, 0.443137, 0.184314)
-
-[node name="ColorRect2" type="ColorRect" parent="color"]
-material = SubResource("ShaderMaterial_yj33p")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="fpsCounter" type="CanvasLayer" parent="."]
 
@@ -292,17 +283,18 @@ data = ExtResource("8_jubua")
 [node name="ProtonScatter" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.429464, 0.0433335, 0.537077)
 script = ExtResource("8_i03mh")
-modifier_stack = SubResource("Resource_d22pw")
+modifier_stack = SubResource("Resource_xwjm8")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
 [node name="ScatterItem" type="Node3D" parent="ProtonScatter"]
 script = ExtResource("14_trba8")
+proportion = 40
 source_scale_multiplier = 3.725
 path = "res://grass/grassVAR1.tscn"
 
 [node name="ScatterShape" type="Node3D" parent="ProtonScatter"]
-transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 8.5171, -0.266514, -3.65035)
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 14.5834, -0.266514, 0.932539)
 visible = false
 script = ExtResource("15_7br2m")
 shape = SubResource("Resource_g8bsm")
@@ -318,3 +310,6 @@ mesh = SubResource("CylinderMesh_wckv1")
 
 [node name="Node3D" parent="." instance=ExtResource("20_lf2el")]
 transform = Transform3D(-0.139138, 0, 0.990273, 0, 1, 0, -0.990273, 0, -0.139138, 17.6437, 0, 6.22072)
+
+[node name="RigidBody3D" parent="." instance=ExtResource("21_q4y5j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.52288, 1.14098, -1.68742)

@@ -27,8 +27,9 @@ func _physics_process(delta):
 		velocity_y -= gravity * delta
 	
 	velocity.y = velocity_y
-	move_and_slide()
+	var collide = move_and_slide()
 	
+	_physics_processCol(delta,collide)
 	#---------------------------------------------------------------
 	# Gestion de la vue
 	var view = Input.get_vector("view_left","view_right","view_up","view_down")
@@ -72,3 +73,19 @@ func _input(event):
 			rotate_y(-event.relative.x * look_sensitivity)
 			camera.rotate_x(-event.relative.y * look_sensitivity)
 			camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2)
+
+
+	# This represents the player's inertia.
+var push_force = 4.0
+
+func _physics_processCol(delta,collide):
+	# after calling move_and_slide()
+	for i in get_slide_collision_count():
+		var c = get_slide_collision(i)
+		if c.get_collider() is RigidBody3D:
+			if collide:
+				print("collide")
+			var imp:Vector3 = (-c.get_normal())
+			imp = imp.normalized()
+			imp=imp*push_force
+			c.get_collider().apply_central_impulse(imp)
