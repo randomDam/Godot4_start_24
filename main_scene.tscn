@@ -101,7 +101,7 @@ shader_parameter/blur_amount = 2.05
 shader_parameter/blur_inner = 0.592
 shader_parameter/blur_outer = 0.71
 
-[sub_resource type="Resource" id="Resource_8j31p"]
+[sub_resource type="Resource" id="Resource_j0eei"]
 script = ExtResource("10_dwbt2")
 amount = 700
 enabled = true
@@ -110,7 +110,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_1o205"]
+[sub_resource type="Resource" id="Resource_ogg24"]
 script = ExtResource("11_78lvg")
 position = Vector3(0.15, 0.15, 0.15)
 rotation = Vector3(20, 360, 20)
@@ -121,7 +121,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_d13ch"]
+[sub_resource type="Resource" id="Resource_gj4dj"]
 script = ExtResource("12_8l0dp")
 iterations = 3
 offset_step = 0.2
@@ -133,7 +133,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_cdydc"]
+[sub_resource type="Resource" id="Resource_heuwm"]
 script = ExtResource("13_sx1je")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 5.0
@@ -141,7 +141,7 @@ ray_offset = 5.0
 remove_points_on_miss = false
 align_with_collision_normal = false
 max_slope = 90.0
-collision_mask = 1
+collision_mask = 2
 exclude_mask = 0
 enabled = true
 override_global_seed = false
@@ -149,9 +149,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_xwjm8"]
+[sub_resource type="Resource" id="Resource_xidla"]
 script = ExtResource("9_aslq1")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_8j31p"), SubResource("Resource_1o205"), SubResource("Resource_d13ch"), SubResource("Resource_cdydc")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_j0eei"), SubResource("Resource_ogg24"), SubResource("Resource_gj4dj"), SubResource("Resource_heuwm")])
 
 [sub_resource type="Resource" id="Resource_g8bsm"]
 script = ExtResource("16_54yfg")
@@ -283,7 +283,7 @@ data = ExtResource("8_jubua")
 [node name="ProtonScatter" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.429464, 0.0433335, 0.537077)
 script = ExtResource("8_i03mh")
-modifier_stack = SubResource("Resource_xwjm8")
+modifier_stack = SubResource("Resource_xidla")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
