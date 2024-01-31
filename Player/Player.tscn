@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Player/player.gd" id="1_ocpx3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aawng"]
+height = 2.10975
 
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1016, 0)

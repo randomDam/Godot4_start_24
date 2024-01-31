@@ -114,7 +114,7 @@ shader_parameter/coloramount = 0.6
 shader_parameter/grainsize = 2.195
 shader_parameter/lumamount = 0.3
 
-[sub_resource type="Resource" id="Resource_mg1bt"]
+[sub_resource type="Resource" id="Resource_g87wj"]
 script = ExtResource("11_tt5rq")
 amount = 300
 enabled = true
@@ -123,7 +123,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_eapth"]
+[sub_resource type="Resource" id="Resource_r7hk1"]
 script = ExtResource("12_qhqhp")
 position = Vector3(0.15, 0.15, 0.15)
 rotation = Vector3(20, 360, 20)
@@ -134,7 +134,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_hor8c"]
+[sub_resource type="Resource" id="Resource_3ewnv"]
 script = ExtResource("13_qj2ib")
 iterations = 3
 offset_step = 0.2
@@ -146,7 +146,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_4h1d8"]
+[sub_resource type="Resource" id="Resource_evl4m"]
 script = ExtResource("14_yvh0i")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 5.0
@@ -162,9 +162,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_8ctlw"]
+[sub_resource type="Resource" id="Resource_dxiwa"]
 script = ExtResource("10_hwhxs")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_mg1bt"), SubResource("Resource_eapth"), SubResource("Resource_hor8c"), SubResource("Resource_4h1d8")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_g87wj"), SubResource("Resource_r7hk1"), SubResource("Resource_3ewnv"), SubResource("Resource_evl4m")])
 
 [sub_resource type="Resource" id="Resource_g8bsm"]
 script = ExtResource("17_tcmkp")
@@ -272,7 +272,7 @@ spot_angle_attenuation = 0.0980732
 [node name="ProtonScatter" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.429464, -2.02427, 0.537077)
 script = ExtResource("9_l61r5")
-modifier_stack = SubResource("Resource_8ctlw")
+modifier_stack = SubResource("Resource_dxiwa")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 metadata/_edit_lock_ = true

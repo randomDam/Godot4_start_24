@@ -1,6 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://c4hewvicu5pou"]
+[gd_scene load_steps=24 format=3 uid="uid://c4hewvicu5pou"]
 
 [ext_resource type="PackedScene" uid="uid://btfmllbek7mwv" path="res://Player/Player.tscn" id="1_hmnd8"]
+[ext_resource type="Script" path="res://script/RigidCollid.gd" id="1_udvky"]
 [ext_resource type="PackedScene" uid="uid://bjetb0lk0hdiq" path="res://OBJECTS/Cube.tscn" id="1_xxrro"]
 [ext_resource type="PackedScene" uid="uid://csphts0qqn4en" path="res://PlanSimple.tscn" id="2_boltm"]
 [ext_resource type="Texture2D" uid="uid://cs6axl2hativ0" path="res://Textures/grid.png" id="3_rxvkj"]
@@ -8,6 +9,7 @@
 [ext_resource type="Script" path="res://script/fps.gd" id="7_bfcsj"]
 [ext_resource type="PackedScene" uid="uid://bh28ck1nawoci" path="res://OBJECTS/Parois1.tscn" id="8_228le"]
 [ext_resource type="PackedScene" uid="uid://dtb640b4n081h" path="res://OBJECTS/TabouretRadio.tscn" id="9_noaky"]
+[ext_resource type="PackedScene" uid="uid://cqrmassiroo8l" path="res://OBJECTS/lorenzo.tscn" id="10_i28mk"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yj1ks"]
 sky_curve = 0.126134
@@ -36,6 +38,7 @@ adjustment_enabled = true
 adjustment_saturation = 0.7
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_afenx"]
+dof_blur_far_enabled = true
 dof_blur_far_distance = 4.6
 dof_blur_far_transition = 19.2
 dof_blur_near_distance = 2.71
@@ -71,6 +74,15 @@ uv1_scale = Vector3(50, 50, 50)
 material = SubResource("ORMMaterial3D_gfs3w")
 size = Vector3(100, 100, 100)
 
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_etg5i"]
+albedo_color = Color(0.298039, 0.721569, 0.917647, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tancq"]
+material = SubResource("ORMMaterial3D_etg5i")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h6854"]
+size = Vector3(0.998535, 1, 1)
+
 [node name="MainScene" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -78,7 +90,7 @@ environment = SubResource("Environment_g5h1w")
 camera_attributes = SubResource("CameraAttributesPractical_afenx")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.682901, 0.284691, -0.672754, -0.0768771, 0.943829, 0.321366, 0.726455, -0.167741, 0.666428, 0, 4.16975, 0)
+transform = Transform3D(0.485062, 0.393028, -0.781181, -0.202498, 0.919512, 0.336887, 0.850711, -0.00522332, 0.525608, 0, 4.16975, 0)
 shadow_enabled = true
 shadow_blur = 0.25
 
@@ -144,3 +156,71 @@ transform = Transform3D(0.724749, 0, -0.689013, 0, 1, 0, 0.689013, 0, 0.724749, 
 
 [node name="Node3D" parent="." instance=ExtResource("9_noaky")]
 transform = Transform3D(-0.0900938, 0, -0.995933, 0, 1, 0, 0.995933, 0, -0.0900938, -13.4476, 0, -4.20339)
+
+[node name="RigidBody3D2" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.98387, 0.502832, -2.24759)
+script = ExtResource("1_udvky")
+
+[node name="cube" type="MeshInstance3D" parent="RigidBody3D2"]
+mesh = SubResource("BoxMesh_tancq")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000732422, 0, 0)
+shape = SubResource("BoxShape3D_h6854")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="RigidBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.98387, 0.502832, -2.24759)
+script = ExtResource("1_udvky")
+
+[node name="cube" type="MeshInstance3D" parent="RigidBody3D2/RigidBody3D"]
+mesh = SubResource("BoxMesh_tancq")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D2/RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000732422, 0, 0)
+shape = SubResource("BoxShape3D_h6854")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="RigidBody3D2/RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.98387, 0.502832, -2.24759)
+script = ExtResource("1_udvky")
+
+[node name="cube" type="MeshInstance3D" parent="RigidBody3D2/RigidBody3D/RigidBody3D"]
+mesh = SubResource("BoxMesh_tancq")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D2/RigidBody3D/RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000732422, 0, 0)
+shape = SubResource("BoxShape3D_h6854")
+
+[node name="collectionLorenzo" type="Node3D" parent="."]
+
+[node name="Lorenzo" parent="collectionLorenzo" instance=ExtResource("10_i28mk")]
+transform = Transform3D(0.6654, 0, 0.746487, 0, 1, 0, -0.746487, 0, 0.6654, -18.2522, 0, -6.00939)
+
+[node name="Lorenzo2" parent="collectionLorenzo" instance=ExtResource("10_i28mk")]
+transform = Transform3D(0.6654, 0, 0.746487, 0, 1, 0, -0.746487, 0, 0.6654, -22.1143, 0, -3.038)
+
+[node name="Lorenzo3" parent="collectionLorenzo" instance=ExtResource("10_i28mk")]
+transform = Transform3D(0.6654, 0, 0.746487, 0, 1, 0, -0.746487, 0, 0.6654, -30.0682, 0, -21.372)
+
+[node name="Lorenzo4" parent="collectionLorenzo" instance=ExtResource("10_i28mk")]
+transform = Transform3D(0.6654, 0, 0.746487, 0, 1, 0, -0.746487, 0, 0.6654, -13.212, 0, -12.9027)
+
+[node name="Lorenzo5" parent="collectionLorenzo" instance=ExtResource("10_i28mk")]
+transform = Transform3D(0.6654, 0, 0.746487, 0, 1, 0, -0.746487, 0, 0.6654, -23.7439, 0, -9.55876)
+
+[node name="Lorenzo6" parent="collectionLorenzo" instance=ExtResource("10_i28mk")]
+transform = Transform3D(0.6654, 0, 0.746487, 0, 1, 0, -0.746487, 0, 0.6654, -5.09929, 0, -11.1884)
+
+[node name="Lorenzo7" parent="collectionLorenzo" instance=ExtResource("10_i28mk")]
+transform = Transform3D(0.6654, 0, 0.746487, 0, 1, 0, -0.746487, 0, 0.6654, -5.09929, 0, -11.1884)
+
+[node name="Lorenzo8" parent="collectionLorenzo" instance=ExtResource("10_i28mk")]
+transform = Transform3D(0.6654, 0, 0.746487, 0, 1, 0, -0.746487, 0, 0.6654, -16.1486, 0, 1.0988)
+
+[node name="Lorenzo9" parent="collectionLorenzo" instance=ExtResource("10_i28mk")]
+transform = Transform3D(0.6654, 0, 0.746487, 0, 1, 0, -0.746487, 0, 0.6654, -33.1486, 0, -2.9012)
+
+[node name="Lorenzo10" parent="collectionLorenzo" instance=ExtResource("10_i28mk")]
+transform = Transform3D(0.6654, 0, 0.746487, 0, 1, 0, -0.746487, 0, 0.6654, -33.1486, 0, -2.9012)
