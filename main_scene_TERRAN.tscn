@@ -300,6 +300,7 @@ metadata/_edit_lock_ = true
 
 [node name="HTerrain" type="Node3D" parent="TERRAN"]
 script = ExtResource("19_86pik")
+ambient_wind = 0.241
 _terrain_data = ExtResource("20_xeo11")
 chunk_size = 32
 collision_enabled = true
